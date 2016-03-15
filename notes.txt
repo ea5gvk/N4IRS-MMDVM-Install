@@ -10,23 +10,20 @@ stty -F /dev/ttyACM0 speed 1200 cs8 -cstopb -parenb
 Send the firmware to the Due
 
 bossac 		port relitive to /dev
+                force_usb_port=true/false override USB port autodetection
 		erase the entire flash (keep the 8KB of bootloader for SAM Dxx)
 		write FILE to the flash accelerated
 		verify FILE matches flash contents
 		boot from FLASH 
-                force_usb_port=true/false override USB port autodetection
-		reset CPU (if supported)
+		reset CPU
                 image file name
 
-bossac --port=ttyACM0 --erase --write --verify --boot=1 --force_usb_port=true/false --reset image.bin
-
-
-bossac --port=ttyACM0 -U false -e -w -v -b MMDVM.bin -R
-
+bossac --port=ttyACM0 --force_usb_port=false --erase --write --verify --boot=1 --reset MMDVM.ino.arduino_due_x.bin
 
 
 stty baud rate 115200 8 bits 1 stop and no parity
 
 stty -F /dev/ttyACM0 speed 115200 cs8 -cstopb -parenb
+
 
 
