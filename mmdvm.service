@@ -1,0 +1,17 @@
+[Unit]
+Description=MMDVMHost Service
+Description=Place this file in /lib/systemd/system
+Description=N4IRS 3/38/2016 
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+EnvironmentFile=/etc/default/mmdvm
+ExecStart=/opt/MMDVMHost/MMDVMHost $MMDVM_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+WantedBy=network-online.target
+
