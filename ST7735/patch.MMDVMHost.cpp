@@ -1,4 +1,4 @@
---- MMDVMHost.cpp	2016-05-03 19:34:17.389615525 -0400
+--- MMDVMHost.cpp	2016-05-04 04:36:39.456255961 -0400
 +++ MMDVMHost.cpp	2016-05-01 17:35:04.000000000 -0400
 @@ -27,6 +27,7 @@
  #include "NullDisplay.h"
@@ -8,7 +8,7 @@
  
  #if defined(HD44780)
  #include "HD44780.h"
-@@ -38,53 +39,38 @@
+@@ -38,62 +39,41 @@
  #if !defined(_WIN32) && !defined(_WIN64)
  #include <unistd.h>
  #include <signal.h>
@@ -55,22 +55,34 @@
 +  ::signal(SIGUSR1, sigHandler);
  #endif
  
--  CMMDVMHost* host = new CMMDVMHost(std::string(iniFile));
+-  int ret = 0;
+-
+-  do {
+-	  m_signal = 0;
+-
+-	  CMMDVMHost* host = new CMMDVMHost(std::string(iniFile));
+-	  ret = host->run();
+-
+-	  delete host;
+-
+-	  if (m_signal == 15)
+-		  ::LogInfo("Caught SIGTERM, exiting");
 +  CMMDVMHost* host = new CMMDVMHost(std::string(argv[1]));
-   int ret2 = host->run();
++  int ret2 = host->run();
  
-   delete host;
+-	  if (m_signal == 1)
+-		  ::LogInfo("Caught SIGHUP, restarting");
+-  } while (m_signal == 1);
++  delete host;
  
--  if (m_signal == 15)
--	  ::LogInfo("Caught SIGTERM. Exiting");
--
--  if (m_signal == 1)
--	  ::LogInfo("Caught SIGHUP. Exiting");
--
    ::LogFinalise();
  
-   return ret2;
-@@ -123,30 +109,6 @@
+-  return ret;
++  return ret2;
+ }
+ 
+ CMMDVMHost::CMMDVMHost(const std::string& confFile) :
+@@ -129,30 +109,6 @@
  		return 1;
  	}
  
@@ -101,7 +113,7 @@
  	LogInfo(HEADER1);
  	LogInfo(HEADER2);
  	LogInfo(HEADER3);
-@@ -607,9 +569,9 @@
+@@ -613,9 +569,9 @@
  
  void CMMDVMHost::createDisplay()
  {
@@ -114,7 +126,7 @@
  
  	LogInfo("Display Parameters");
  	LogInfo("    Type: %s", type.c_str());
-@@ -637,26 +599,23 @@
+@@ -643,26 +599,23 @@
  		unsigned int rows    = m_conf.getHD44780Rows();
  		unsigned int columns = m_conf.getHD44780Columns();
  		std::vector<unsigned int> pins = m_conf.getHD44780Pins();
