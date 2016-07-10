@@ -1,7 +1,7 @@
 [Unit]
 Description=MMDVMHost Service
-Description=Place this file in /lib/systemd/system
-Description=N4IRS 3/38/2016 
+# Description=Place this file in /lib/systemd/system
+# Description=N4IRS 3/38/2016 
 
 [Service]
 Type=simple
