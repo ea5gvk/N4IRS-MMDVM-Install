@@ -4,3 +4,5 @@ git clone -b arduino https://github.com/shumatech/BOSSA.
 If you build the complete package you will need GUI support installed. If all you want is the command line utility, then replace the Makefile with the included one and run:
 make bossac
   
+bossac will be in the BOSSA/bin directory
+
