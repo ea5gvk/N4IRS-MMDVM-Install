@@ -4,8 +4,13 @@ Description=MMDVMHost Service
 # Description=N4IRS 10/19/2016 
 # The device name should point to the 
 # port the mmdvm is plugged into.
+# For USB ports (Arduino Due)
 BindTo=dev-ttyACM0.device
 After=dev-ttyACM0.device
+# for serial ports (DVMega)
+# BindTo=dev-ttyS2.device
+# After=dev-ttyS2.device
+
 
 [Service]
 Type=simple

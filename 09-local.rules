@@ -6,5 +6,8 @@
 # your mmdvm will now always be /dev/mmdvm
 # N4IRS 10/19/2016
 
+# For a USB Device (Arduino Due)
 SUBSYSTEMS=="usb", ATTRS{product}=="Arduino Due Prog. Port",    ATTRS{idProduct}=="003d", ATTRS{idVendor}=="2341", SYMLINK+="mmdvm", TAG+="systemd"
 
+# For a serial device (DVMega)
+# KERNEL=="ttyS2", SUBSYSTEM=="tty",    SYMLINK+="mmdvm"
