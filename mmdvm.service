@@ -1,18 +1,25 @@
 [Unit]
 Description=MMDVMHost Service
 # Description=Place this file in /lib/systemd/system
-# Description=N4IRS 7/10/2016 
+# Description=N4IRS 10/19/2016 
+# The device name should point to the 
+# port the mmdvm is plugged into.
+BindTo=dev-ttyACM0.device
+After=dev-ttyACM0.device
 
 [Service]
 Type=simple
-StandardOutput=null
-WorkingDirectory=/opt/MMDVMHost
 Restart=always
 RestartSec=3
+StandardOutput=null
+WorkingDirectory=/opt/MMDVMHost
 ExecStart=/opt/MMDVMHost/MMDVMHost /opt/MMDVMHost/MMDVM.ini
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 
 [Install]
 WantedBy=network-online.target
+
+
+
 
