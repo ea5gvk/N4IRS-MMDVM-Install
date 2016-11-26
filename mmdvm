@@ -1,6 +1,0 @@
-# Default settings for MMDVMHost 
-# The file should be placed in /etc/default
-# N4IRS 3/28/2016
-
-# Options to pass to MMDVMHost
-MMDVM_OPTS= /opt/MMDVMHost/MMDVM.ini
