@@ -1,0 +1,255 @@
+Serial ports:
+DISP_TXD	PA2
+DISP_RXD 	PA3
+RXD		PA10
+TXD		PA9
+
+Status LEDs:
+COS_LED		PB15
+PTT_LED		PB14
+P25_LED 	PB0
+YSF_LED 	PB1
+DMR_LED		PB13
+DSTAR_LED	PB12
+
+I2C port:
+SDA 		PB11
+SCL		PB10
+
+7021 board:
+SLE		PB8
+SREAD		PB7
+SDATA		PB6
+SCLK		PB5
+DATAOUT		PB4
+DATAIN		PB3
+CLKOUT		PA15
+PAC		PB14
+
+**** NOTE: YOU MUST ONLY USE 3.3V FTDI ADAPTERS !!! ****  
+If you use a 5V FTDI adapter you will destroy the 7021 chip.
+
+
+#################################################################
+
+Source code:
+
+Download the zip file of the MMDVM_HS source code from here:
+MMDVM_HS:
+https://github.com/juribeparada/MMDVM_HS
+
+- Download the ST libraries STM32F1XX_Lib.zip from here (only needed for Makefile 
+compilation way):
+https://github.com/juribeparada/STM32F10X_Lib
+
+Extract the MMDVM_HS source code. Make sure the folder is named "MMDVM_HS".  
+Extract the STM32F10X_Lib files into the MMDVM_HS folder. Make sure the folder is named "STM32F10X_Lib"
+
+Compiling
+
+1) STM32Duino IDE
+
+Follow the installation instructions from here:
+https://github.com/rogerclarkmelbourne/Arduino_STM32/wiki/Installation
+
+Start the Arduino IDE. Open the mmdvm_hs.ino file in the MMDVM_HS folder.
+
+Under the menu "Tools" select "Board" and then select 
+Board: Generic STM32F103C Series
+Variant: STM32F103CB (20k RAM, 128k Flash)
+
+Under the menu "Sketch" select "Verify/Compile"
+
+This should build the code.  The .bin file is now "hiding on your machine". Take a look at the compiler 
+output. There will be a lot of lines that look like this:
+"C:\Users\asdf\AppData\Local\Arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1/bin/arm-none-eabi-ar" rcs  "C:\Users\asdf\AppData\Local\Temp\build002e00e5d0a69ff4e2061bd51bf2a41f.tmp\core\core.a" "C:\Users\asdf\AppData\Local\Temp\build002e00e5d0a69ff4e2061bd51bf2a41f.tmp\core\stm32f1\wirish_debug.cpp.o"
+
+Note the temporary directory being used. For example:
+C:\Users\asdf\AppData\Local\Temp\build002e00e5d0a69ff4e2061bd51bf2a41f.tmp
+The MMDVM_HS.ino.bin file will be in that directory.  Remember this folder when uploading to the board.
+
+#################################################################
+
+2) GCC with Windows versions < 10:
+
+- Download the GNU make utility:
+http://gnuwin32.sourceforge.net/packages/make.htm
+(download the binaries zip file and extract make.exe and put it in the same directory as Makefile)
+(download the dependencies zip file and extract libintl3.dll and libiconv2.dll and put them in the same directory as Makefile)
+
+- Download the GNU ARM embedded toolchain from here:
+https://launchpad.net/gcc-arm-embedded/+download
+
+- Currently the direct link to the installer is here:
+https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-win32.exe
+
+- Install the GNU ARM tools in the default location (typically C:\Program Files (x86)\GNU Tools ARM Embedded\5.4 2016q3)
+
+- Launch the "GCC Command Prompt" from "GNU Tools for ARM Embedded Processors" (Start Menu)
+cd to the folder where you put the files.
+and then build the firmware:
+
+- then you can use the following command to build the source code:
+make
+
+.hex and .bin files will be in the bin folder.
+
+#################################################################
+
+3) Windows 10 with command line BASH:
+
+- Install bash using these instructions:
+http://www.pcworld.com/article/3106463/windows/how-to-get-bash-on-windows-10-with-the-anniversary-update.html
+
+- Once you have bash installed, install GCC for ARM. It must be >= version 4.9:
+sudo apt-get install gcc
+sudo apt-get install make
+sudo apt-get remove gcc-arm-none-eabi
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+sudo apt-get install -y git gcc-arm-embedded
+
+sudo make
+
+The .hex file will be in the bin folder
+
+
+#################################################################
+
+2) For Linux/Mac:
+
+* First install ARM gcc tools
+
+Linux Installation (Ubuntu):
+
+- Remove the official package:
+sudo apt-get purge binutils-arm-none-eabi gcc-arm-none-eabi gdb-arm-none-eabi libnewlib-arm-none-eabi
+
+- Add 3rd party repository:
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+sudo apt-get update
+
+- Check the GCC package version in the PPA repository:
+sudo apt-cache policy gcc-arm-embedded
+
+- Install software requirements:
+sudo apt-get install build-essential git gcc-arm-embedded qemu-system-
+arm symlinks expect autoconf libtool pkg-config libusb-1.0-0
+libusb-1.0-0-dev
+
+- Install openocd from the sources (only for external STLink):
+git clone https://github.com/ntfreak/openocd
+cd openocd
+./bootstrap
+./configure
+make
+sudo make install
+
+-------------------------------------------
+
+Linux Raspbian Installation (Raspberry Pi):
+
+- Update package lists:
+sudo apt-get update
+
+- Install toolchain and necessary packages:
+sudo apt-get install git gcc-arm-none-eabi gdb-arm-none-eabi autoconf libtool pkg-config libusb-1.0-0 libusb-1.0-0-dev
+
+- Install openocd from the sources (only for external STLink):
+git clone https://github.com/ntfreak/openocd
+cd openocd
+./bootstrap
+./configure
+make
+sudo make install
+(Use “sudo” for openocd call, see below)
+
+#################################################################
+
+MAC OS X:
+
+- First Install Homebrew (not root!):
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install libusb autogen automake wget pkg-config cmake openocd 
+
+wget https://launchpad.net/gcc-arm-embedded/4.8/4.8-2014-q1-update/+download/gcc-arm-none-eabi-4_8-2014q1-20140314-mac.tar.bz2
+tar xvf gcc-arm-none-eabi-4_8-2014q1-20140314-mac.tar.bz2
+
+cd gcc-arm-none-eabi-4_8-2014q1/
+sudo cp -Rf * /usr/local/
+
+-------------------------------------------
+
+Fix OpenOCD (for external STLink programming):
+
+- Find and open (with nano for example) the following file:
+sudo nano /usr/share/openocd/scripts/board/stm32f4discovery.cfg
+
+or
+
+sudo nano /usr/local/share/openocd/scripts/board/stm32f4discovery.cfg
+
+And replace the line:
+source [find interface/stlink-v2.cfg]
+with:
+source [find interface/stlink-v2-1.cfg]
+
+-------------------------------------------
+
+Makefile options:
+
+You can use the following command to build the source code:
+
+make
+
+The .hex and .bin files will be in the bin folder
+
+- Upload the firmware to the board (using external stlink):
+make stlink
+
+- Upload the firmware to the board (using USART1 serial port option):
+make serial devser=<serial_device>
+
+#################################################################
+
+Firmware programming software:
+
+Serial programming:
+All serial programming options work the same way. The BOOT0 jumper must be placed 
+on pins 2-3. Then press the reset button. Then you can run the Demonstrator app. 
+After programming return the BOOT0 jumper to pins 1-2 and press the reset button.
+
+- Windows Serial programming:
+Download and install the Windows Flash Loader Demonstrator:
+http://www.st.com/en/development-tools/flasher-stm32.html
+(note: you will have to register with ST to be able to download the installer)
+The programming is done via the port connected to the PA9/PA10 pins. On the carrier PCB
+the two pins are connected to the FTDI connector. 
+
+- Windows ST-Link programming:
+Download and install the ST-Link programming software from here:
+http://www.st.com/en/embedded-software/stsw-link004.html
+(note: you will have to register with ST to be able to download the installer)
+The blue STM32F103 board has 4 pins to connect to an ST-Link adapter.
+
+- Mac OSX ST-Link programming:
+http://www.davesblog.com/blog/2012/04/03/using-stm32f4-discovery-with-os-x-plus-built-in-st-link/
+
+- Mac OSX and Linux serial programming
+Here are some instructions showing how to program using the serial port:
+https://wizneteu.wordpress.com/2015/03/19/flashing-stm32-via-serial-line-on-linux-stm32flash/comment-page-1/
+And the link to the project they are using:
+https://sourceforge.net/projects/stm32flash/
+
+- And the instructions on how to install and use the tool:
+sudo apt-get update && sudo apt-get install subversion
+svn checkout http://stm32flash.googlecode.com/svn/trunk/ stm32flash
+git clone git://git.code.sf.net/p/stm32flash/code stm32flash-code
+cd stm32flash-code && make && sudo make install
+stm32flash -w combine.bin -v /dev/ttyS0
+
+- Another tool:
+https://github.com/jsnyder/stm32ld
+
+- And more instructions:
+https://github.com/rogerclarkmelbourne/Arduino_STM32/wiki/Programming-an-STM32F103XXX-with-a-generic-%22ST-Link-V2%22-programmer-from-Linux
