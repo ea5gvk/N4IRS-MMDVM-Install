@@ -1,4 +1,8 @@
-# Support for the GREAT Open Source MMDVM based hotspot
+# 
+
+# install dfu-util
+apt-get install dfu-util -y
+
 # Build upload-reset
 gcc upload-reset.c -o upload-reset
 
