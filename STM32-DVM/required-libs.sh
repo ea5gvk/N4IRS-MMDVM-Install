@@ -17,7 +17,7 @@ apt-get install -y python-pip
 
 apt-get install stm32flash
 
-# exit 0
+exit 0
 
 apt-get install libusb-dev -y
 apt-get install libnewt-dev -y
