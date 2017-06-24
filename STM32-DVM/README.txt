@@ -19,5 +19,8 @@ cd /usr/src/MMDVM
 make -f Makefile.CMSIS
 
 Need to add the notes on putting the board in boot 0 and upload firmware
-
+Disconnect STM32-DVM from host
+Insert Boot0 jumper
+Connect STM32-DVM to host
+PWR, ACT and DMR should be lit solid, NOT flashing.
 
