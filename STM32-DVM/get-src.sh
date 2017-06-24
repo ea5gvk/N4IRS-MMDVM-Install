@@ -11,7 +11,7 @@ git clone https://github.com/g4klx/MMDVM.git
 
 cp -rf /srv/MMDVM /usr/src
 
-cp Config.h /usr/src/MMDVM
+cp /srv/MMDVM-Install/STM32-DVM/Config.h /usr/src/MMDVM
 
 
 
