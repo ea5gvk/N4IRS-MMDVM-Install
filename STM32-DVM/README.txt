@@ -10,7 +10,8 @@ apt-get update
 cd /srv
 git clone https://github.com/N4IRS/MMDVM-Install.git
 cd /srv/MMDVM-Install/STM32-DVM
-./required.sh
+chmod +x *.sh
+./required-libs.sh
 ./get-src.sh
 
 You now have the needed utilities and source code for the firmware.
