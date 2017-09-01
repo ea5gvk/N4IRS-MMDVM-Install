@@ -61,7 +61,7 @@
 // #define STM32F4_NUCLEO_MODE_PINS
 
 // Pass RSSI information to the host
-// #define SEND_RSSI_DATA
+#define SEND_RSSI_DATA
 
 // Use the modem as a serial repeater for Nextion displays
 // #define SERIAL_REPEATER
