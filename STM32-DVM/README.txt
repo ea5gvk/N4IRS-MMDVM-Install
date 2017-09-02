@@ -1,6 +1,7 @@
 Login to Pi-Star via ssh or console
 sudo -s
-raspi-config
+rpi-rw
+pistar-expand
 Expand the image to fill the SD card Advanced/Expand
 reboot
 Login to Pi-Star via ssh or console
