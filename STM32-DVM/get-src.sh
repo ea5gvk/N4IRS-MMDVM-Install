@@ -13,7 +13,9 @@ cp -rf /srv/MMDVM /usr/src
 
 cp /srv/MMDVM-Install/STM32-DVM/Config.h /usr/src/MMDVM
 
+cp /srv/MMDVM-Install/STM32-DVM/program-STM32_DVM_PiHat /usr/local/sbin
 
+cp /srv/MMDVM-Install/STM32-DVM/program-STM32_DVM_USB /usr/local/sbin
 
 
 

@@ -1,0 +1,13 @@
+#! /bin/sh
+
+#####################################################
+#                                                   #
+#    Program firmware for the STM32_DVM_PiHat       #
+#                                                   #
+#####################################################
+
+test -x bin/mmdvm.hex || exit 1
+
+stm32flash -w bin/mmdvm.hex -v /dev/ttyUSB0
+
+

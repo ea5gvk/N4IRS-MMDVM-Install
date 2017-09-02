@@ -21,13 +21,33 @@ cd /usr/src/MMDVM
 Do a test to make sure everything builds correctly
 make -f Makefile.CMSIS
 No errors
-Need to add the notes on putting the board in boot 0 and upload firmware
+
+For the program-STM32_DVM_USB
 Disconnect STM32-DVM from host
 Insert Boot0 jumper
 Connect STM32-DVM to host
 PWR, ACT and DMR should be lit solid, NOT flashing.
+
 make -f Makefile.CMSIS program_bl
 Disconnect STM32-DVM from host
 remove Boot0 jumper
 Connect STM32-DVM to host
 start MMDVMHost
+
+=================================================
+
+For the program-STM32_DVM_PiHat  
+Shutdown the Raspberry Pi
+Disconnect power to Raspberry Pi
+Insert Boot0 jumper
+Power ON the Raspberry Pi
+PWR, ACT and DMR should be lit solid, NOT flashing.
+
+make -f Makefile.CMSIS 
+program-STM32_DVM_PiHat
+Shutdown the Raspberry Pi
+Disconnect power to Raspberry Pi
+remove Boot0 jumper
+Power ON the Raspberry Pi
+start MMDVMHost
+
