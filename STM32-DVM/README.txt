@@ -36,7 +36,7 @@ start MMDVMHost
 
 =================================================
 
-For the program-STM32_DVM_PiHat  
+For the STM32_DVM PiHat  
 Shutdown the Raspberry Pi
 Disconnect power to Raspberry Pi
 Insert Boot0 jumper
