@@ -15,6 +15,8 @@ apt-get install -y make
 apt-get install -y curl
 apt-get install -y python-pip
 apt-get install -y gcc-arm-none-eabi
+# For Armbian
+apt-get install -y libstdc++-arm-none-eabi-newlib
 
 apt-get install -y stm32flash
 
