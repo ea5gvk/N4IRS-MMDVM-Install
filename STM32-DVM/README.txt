@@ -1,3 +1,5 @@
+I will upload pre-built binaries ready for upload at http://dvswitch.org/files/HAM/MMDVM/
+
 Login to Pi-Star via ssh or console
 sudo -s
 rpi-rw
