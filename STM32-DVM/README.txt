@@ -26,13 +26,13 @@ No errors
 
 For the STM32-DVM USB
 Disconnect STM32-DVM from the host
-Insert Boot0 jumper
+Insert JP1 jumper
 Connect STM32-DVM to the host
 PWR, ACT and DMR should be lit solid, NOT flashing.
 
 make -f Makefile.CMSIS program_bl
 Disconnect STM32-DVM from host
-remove Boot0 jumper
+remove JP1 jumper
 Connect STM32-DVM to host
 start MMDVMHost
 
@@ -41,7 +41,7 @@ start MMDVMHost
 For the STM32-DVM PiHat  
 Shutdown the Raspberry Pi
 Disconnect power to Raspberry Pi
-Insert Boot0 jumper
+Insert JP1 jumper
 Power ON the Raspberry Pi
 PWR, ACT and DMR should be lit solid, NOT flashing.
 
@@ -49,7 +49,7 @@ make -f Makefile.CMSIS
 program-STM32_DVM_PiHat
 Shutdown the Raspberry Pi
 Disconnect power to Raspberry Pi
-remove Boot0 jumper
+remove JP1 jumper
 Power ON the Raspberry Pi
 start MMDVMHost
 
