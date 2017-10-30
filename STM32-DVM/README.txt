@@ -17,6 +17,9 @@ chmod +x *.sh
 ./required-libs.sh
 ./get-src.sh
 
+systemctl stop pistar-watchdog
+systemctl stop mmdvmhost
+
 You now have the needed utilities and source code for the firmware.
 
 cd /usr/src/MMDVM
