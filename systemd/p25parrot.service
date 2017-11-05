@@ -1,0 +1,21 @@
+[Unit]
+Description=P25Parrot Service
+# Description=Place this file in /lib/systemd/system
+# Description=N4IRS 10/19/2016 
+After=network-online.target netcheck.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+StandardOutput=null
+WorkingDirectory=/opt/P25Clients/P25Parrot
+ExecStart=/opt/P25Clients/P25Parrot/P25Parrot 42011
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+WantedBy=network-online.target
+

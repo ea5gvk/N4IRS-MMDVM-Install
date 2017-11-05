@@ -1,0 +1,21 @@
+[Unit]
+Description=DMRGateway Service
+# Description=Place this file in /lib/systemd/system
+# Description=N4IRS 10/19/2016 
+After=network-online.target netcheck.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+StandardOutput=null
+WorkingDirectory=/opt/DMRGateway
+ExecStart=/opt/DMRGateway/DMRGateway /opt/DMRGateway/DMRGateway.ini
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+WantedBy=network-online.target
+
