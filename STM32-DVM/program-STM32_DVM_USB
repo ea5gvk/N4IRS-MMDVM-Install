@@ -6,7 +6,7 @@
 #                                                   #
 #####################################################
 
-test -x bin/mmdvm.hex || exit 1
+test -e bin/mmdvm.hex || exit 1
 
 stm32flash -w bin/mmdvm.hex -v /dev/ttyUSB0
 
