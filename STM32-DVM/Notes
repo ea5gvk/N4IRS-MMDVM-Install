@@ -1,0 +1,60 @@
+I will upload pre-built binaries ready for upload at http://dvswitch.org/files/HAM/MMDVM/
+
+Building firmware from source
+=============================
+Login as root or use sudo -s
+apt-get update
+apt-get upgrade -Y
+
+cd /srv
+git clone https://github.com/N4IRS/MMDVM-Install.git
+cd /srv/MMDVM-Install/STM32-DVM
+chmod +x *.sh
+./required-libs.sh
+./get-src.sh
+
+You now have the needed utilities and source code for the firmware.
+
+cd /usr/src/MMDVM
+Do a test to make sure everything builds correctly
+make -f Makefile.CMSIS
+No errors?
+
+The firmware is in the /usr/src/MMDVM/bin directory
+
+
+Upload firmware to STM32-DVM USB
+================================
+Disconnect STM32-DVM from the host USB
+Insert JP1 jumper
+Connect STM32-DVM to the host
+PWR, ACT and DMR MUST be lit solid, NOT flashing.
+
+ls
+Do you see mmdvm.hex?
+stm32flash -w bin/mmdvm.hex -v /dev/ttyUSB0
+
+Disconnect STM32-DVM from host USB
+remove JP1 jumper
+Connect STM32-DVM to host USB
+start MMDVMHost
+
+=================================================
+
+Upload firmware to the STM32-DVM PiHat  
+Shutdown the Raspberry Pi
+Disconnect power to Raspberry Pi
+Insert JP1 jumper
+Power ON the Raspberry Pi
+PWR, ACT and DMR MUST be lit solid, NOT flashing.
+
+ls
+Do you see mmdvm.hex?
+stm32flash -w bin/mmdvm.hex -v /dev/ttyAMA0
+
+Shutdown the Raspberry Pi
+Disconnect power to Raspberry Pi
+remove JP1 jumper
+Power ON the Raspberry Pi
+start MMDVMHost
+
