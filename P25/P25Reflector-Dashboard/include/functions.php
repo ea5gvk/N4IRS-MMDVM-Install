@@ -58,10 +58,18 @@ function getP25ReflectorLog() {
 }
 
 function getShortP25ReflectorLog() {
+// YSF
+//M: 2018-04-12 18:11:10.807 Received data from N4IRS      to ALL        at N4IRS
+//M: 2018-04-12 18:11:11.602 Received end of transmission
+// P25
+//M: 2018-04-12 18:39:20.784 Transmission started from KC5MMW     (166.173.61.41:6247)
+//M: 2018-04-12 18:39:20.795 Transmission from K5BRM at KC5MMW     to TG 10200
+//M: 2018-04-12 18:39:23.455 Received end of transmission
+
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logPath = P25REFLECTORLOGPATH."/".P25REFLECTORLOGPREFIX."-".date("Y-m-d").".log";
 	//$logLines = explode("\n", `tail -n100 $logPath`);
-	$logLines = explode("\n", `egrep -h "Received|watchdog" $logPath | tail -1`);
+	$logLines = explode("\n", `egrep -h "Transmission|Received|watchdog" $logPath | tail -1`);
 	return $logLines;
 }
 
