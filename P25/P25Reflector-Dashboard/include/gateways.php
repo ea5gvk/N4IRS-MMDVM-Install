@@ -2,7 +2,7 @@
 ?>
   <div class="panel panel-default">
   <!-- Standard-Panel-Inhalt -->
-  <div class="panel-heading">Connected P25Gateways</div>
+  <div class="panel-heading">Connected P25 Gateways</div>
   <!-- Tabelle -->
   <div class="table-responsive">
   <table id="gateways" class="table table-condensed">
