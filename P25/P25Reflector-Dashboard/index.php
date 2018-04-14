@@ -1,5 +1,4 @@
 <?php
- $pageTitle = "Page 1";
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
@@ -40,7 +39,7 @@ include "version.php";
   </head>
   <body>
   <div class="page-header" style="position:relative;">
-  <h1><center>TG 10200 / North America</center></h1>
+  <h1><center>  <?php echo getConfigItem("Info", "Name", $configs); ?> / <?php echo getConfigItem("Info", "Description", $configs); ?></center></h1>
   <h4>P25Reflector Dashboard by DG9VH</h4><br>
   <h4>P25Reflector by G4KLX Version:
   <?php  echo getP25ReflectorVersion(); ?></h4>
@@ -66,14 +65,14 @@ include "include/allheard.php";
 <?php
 $lastReload = new DateTime();
 $lastReload->setTimezone(new DateTimeZone(TIMEZONE));
-echo "P25Reflector-Dashboard V ".VERSION." | N4IRS | Last Reload ".$lastReload->format('Y-m-d, H:i:s')." (".TIMEZONE.")";
+echo "P25Reflector-Dashboard V ".VERSION." | Last Reload ".$lastReload->format('Y-m-d, H:i:s')." (".TIMEZONE.")";
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $start), 4);
 echo '<!--Page generated in '.$total_time.' seconds.-->';
-?> | Based on: <a href="https://github.com/dg9vh/YSFReflector-Dashboard">https://github.com/dg9vh/YSFReflector-Dashboard</a>
+?> | get your own at: <a href="https://github.com/dg9vh/YSFReflector-Dashboard">https://github.com/dg9vh/YSFReflector-Dashboard</a>
         </div>
   </body>
 </html>
