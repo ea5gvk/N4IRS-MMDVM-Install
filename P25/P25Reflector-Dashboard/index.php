@@ -1,4 +1,5 @@
 <?php
+ $pageTitle = "Page 1";
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
@@ -65,14 +66,14 @@ include "include/allheard.php";
 <?php
 $lastReload = new DateTime();
 $lastReload->setTimezone(new DateTimeZone(TIMEZONE));
-echo "P25Reflector-Dashboard V ".VERSION." | M1GEO | Last Reload ".$lastReload->format('Y-m-d, H:i:s')." (".TIMEZONE.")";
+echo "P25Reflector-Dashboard V ".VERSION." | N4IRS | Last Reload ".$lastReload->format('Y-m-d, H:i:s')." (".TIMEZONE.")";
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $start), 4);
 echo '<!--Page generated in '.$total_time.' seconds.-->';
-?> | get your own at: <a href="https://github.com/dg9vh/YSFReflector-Dashboard">https://github.com/dg9vh/YSFReflector-Dashboard</a>
+?> | Based on: <a href="https://github.com/dg9vh/YSFReflector-Dashboard">https://github.com/dg9vh/YSFReflector-Dashboard</a>
         </div>
   </body>
 </html>

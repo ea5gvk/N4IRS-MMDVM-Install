@@ -12,5 +12,5 @@ define("TIMEZONE", "America/New_York");
 define("LOGO", "DVSwitch.png");
 define("REFRESHAFTER", "60");
 define("TEMPERATUREHIGHLEVEL", "60");
-define("SHOWQRZ", "NO");
+define("SHOWQRZ", "");
 ?>
