@@ -36,7 +36,7 @@
 // #define EXTERNAL_OSC 19200000
 
 // Allow the use of the COS line to lockout the modem
-// #define USE_COS_AS_LOCKOUT
+#define USE_COS_AS_LOCKOUT
 
 // Use pins to output the current mode
 #define ARDUINO_MODE_PINS
