@@ -3,7 +3,7 @@
 # Be careful, when manual editing this!
 
 date_default_timezone_set('UTC');
-define("P25REFLECTORLOGPATH", "/var/log/P25Reflector");
+define("P25REFLECTORLOGPATH", "/var/log/mmdvm");
 define("P25REFLECTORLOGPREFIX", "P25Reflector");
 define("P25REFLECTORINIPATH", "/opt/P25Reflector/");
 define("P25REFLECTORINIFILENAME", "P25Reflector.ini");

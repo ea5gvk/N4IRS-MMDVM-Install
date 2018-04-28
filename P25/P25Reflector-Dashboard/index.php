@@ -40,9 +40,6 @@ include "version.php";
   <body>
   <div class="page-header" style="position:relative;">
   <h1><center>  <?php echo getConfigItem("Info", "Name", $configs); ?> / <?php echo getConfigItem("Info", "Description", $configs); ?></center></h1>
-  <h4>P25Reflector Dashboard by DG9VH</h4><br>
-  <h4>P25Reflector by G4KLX Version:
-  <?php  echo getP25ReflectorVersion(); ?></h4>
   <?php
   if (defined("LOGO")) {
 ?>
@@ -62,6 +59,8 @@ include "include/lh.php";
 include "include/allheard.php";
 ?>
 	<div class="panel panel-info">
+<h5>P25Reflector Dashboard by DG9VH</h5>
+<h5>P25Reflector by G4KLX Version: <?php  echo getP25ReflectorVersion(); ?></h5>
 <?php
 $lastReload = new DateTime();
 $lastReload->setTimezone(new DateTimeZone(TIMEZONE));
@@ -76,4 +75,3 @@ echo '<!--Page generated in '.$total_time.' seconds.-->';
         </div>
   </body>
 </html>
-
