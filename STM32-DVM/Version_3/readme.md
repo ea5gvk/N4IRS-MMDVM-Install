@@ -8,6 +8,7 @@ Copy Config.h IO.cpp IOSTM.cpp Makefile SerialSTM.cpp over the existing files.
 make dvm
 
 For USB version:
+
 Put the board in Boot Loader mode (JP1)
 
 stm32flash -v -w bin/mmdvm_f4.bin /dev/ttyUSB0
