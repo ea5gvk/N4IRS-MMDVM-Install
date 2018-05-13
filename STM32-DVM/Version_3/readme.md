@@ -2,6 +2,7 @@ This is for the Version 3 (Blue Board) ONLY!
 Clone the MMDVM repository from G4LKX
 Add STM32F4XX_Lib directory
 Copy Config.h IO.cpp IOSTM.cpp Makefile SerialSTM.cpp over the existing files.
+
 make dvm
 
 For USB version:
