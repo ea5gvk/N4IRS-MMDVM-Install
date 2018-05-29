@@ -16,6 +16,9 @@ chmod +x *.sh
 You now have the needed utilities and source code for the firmware.
 
 cd /usr/src/MMDVM
+YOU MUST do the next step
+Replace the Config.h and the SerialRB.h from this repository
+Did you do the previous step?
 Do a test to make sure everything builds correctly
 make -f Makefile.CMSIS
 No errors?
