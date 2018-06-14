@@ -1,0 +1,16 @@
+mkdir -p usr/src
+
+mkdir -p opt/MMDVMHost opt/MMDVMCal opt/DMRGateway
+
+mkdir -p opt/NXDNGateway opt/NXDNParrot 
+mkdir -p opt/P25Gateway opt/P25Parrot opt/P25Reflector
+mkdir -p opt/YSFGateway opt/YSFParrot opt/YSFReflector
+
+mkdir -p opt/YSF2DMR opt/YSF2P25 opt/YSF2DMR
+
+mkdir -p srv/Repositories/CA6JAU srv/Repositories/DVSwitch srv/Repositories/G4KLX
+mkdir -p srv/Repositories/N0MJS srv/Repositories/N4IRR srv/Repositories/N4IRS
+mkdir -p srv/Repositories/OpenDV
+
+mkdir -p var/log/dvswitch var/log/mmdvm var/lib/dvswitch var/lib/mmdvm
+

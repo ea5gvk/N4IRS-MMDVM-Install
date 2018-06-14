@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# set -o errexit
+
+# N4IRS 07/26/2017
+
+#################################################
+#                                               #
+#                                               #
+#                                               #
+#################################################
+
+systemctl stop nxdngateway.service
+systemctl stop nxdnparrot.service
+systemctl stop p25gateway.service
+systemctl stop p25parrot.service
+systemctl stop ysf2dmr.service
+systemctl stop ysf2nxdn.service
+systemctl stop ysf2p25.service
+systemctl stop ysfgateway.service
+systemctl stop ysfparrot.service
+systemctl stop mmdvmhost.service
+
