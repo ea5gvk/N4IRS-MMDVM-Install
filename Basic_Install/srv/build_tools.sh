@@ -43,3 +43,14 @@ apt-get install qemu-user-static -y
 apt-get install automake -y
 # apt-get install libwxgtk3.0-dev -y
 apt-get install fakeroot -y
+
+# For MMDVM firmware
+
+apt-get install libusb-1.0 -y
+apt-get install python-pip -y
+
+apt-get install gdb-arm-none-eabi -y
+
+# For Armbian
+apt-get install libstdc++-arm-none-eabi-newlib -y
+
