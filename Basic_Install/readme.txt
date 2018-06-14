@@ -31,7 +31,7 @@ Scripts are run daily to update the needed data files. There are symbolic links 
 
 I download and git clone to /srv. I usually copy the source directories to /usr/src to compile the programs. The executable is copied to /opt/program_name. 
 
-I will be adding the toos and directories needed to compile and install the firmwar to the MMDVM boards. (modems and hot spots)
+I will be adding the tools and directories needed to compile and install the firmware to the MMDVM boards. (modems and hot spots)
 
 This is a work in progress and is mostly so I can easily recreate a system. I seem to do this a LOT!
 
