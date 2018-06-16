@@ -272,7 +272,7 @@ chmod -R 775 /var/www/html
 lighty-enable-mod fastcgi
 lighty-enable-mod fastcgi-php
 
-mv /var/www/html/index.html /var/www/html/index.html.old
+mv /var/www/html/index.lighttpd.html /var/www/html/index.lighttpd.html.old
 
 systemctl restart lighttpd
 
