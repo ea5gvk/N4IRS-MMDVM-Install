@@ -1,7 +1,7 @@
 This will help me (you) add the needed directories, scripts to a existing Debian install.
 This is not a how to, this is not a ready to run image. This is how I layout a MMDVM system.
 Everything is built from source. This is as about as brute force as it gets. Can these steps be done 
-better programaticly? Yes. Feel free to modify to taste.
+better programmatically? Yes. Feel free to modify to taste.
 
 /opt/program_name	This is where I keep the programs and config files. Example /opt/MMDVMHost
 /var/lib/mmdvm		This is where I keep the data files. Example /var/lib/mmdvm/DMRIDs.dat
