@@ -1,8 +1,18 @@
 [Unit]
-Description=Check for internet connectivity
+Description=NetCheck test for Internet connectivity
 # Description=Place this file in /lib/systemd/system
-# Description=N4IRS 6/09/2017 
-After=syslog.target
+# Description=N4IRS 04/20/2018
+
+# The device name should point to the
+# port the mmdvm is plugged into.
+# For USB ports (Arduino Due)
+# BindTo=dev-ttyACM0.device
+#
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+
+After=network-online.target syslog.target
+Wants=network-online.target
 
 [Service]
 Type=forking
@@ -10,4 +20,7 @@ StandardOutput=null
 ExecStart=/usr/local/sbin/netcheck
 
 [Install]
-WantedBy=network-online.target
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+
+WantedBy=multi-user.target

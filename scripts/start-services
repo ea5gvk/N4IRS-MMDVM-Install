@@ -1,4 +1,0 @@
-#! /bin/sh
-
-systemctl start mmdvmhost.service dmrgateway.service ysfgateway.service ysfparrot.service p25gateway.service p25parrot.service apache2
-
