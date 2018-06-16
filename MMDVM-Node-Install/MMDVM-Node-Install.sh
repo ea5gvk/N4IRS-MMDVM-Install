@@ -12,6 +12,7 @@ set -o errexit
 # Install needed programs
 # This could be pruned
 #
+apt-get update -y
 apt-get install g++ -y
 apt-get install make -y
 apt-get install build-essential -y
