@@ -96,6 +96,9 @@ git clone https://github.com/n0mjs710/DMRlink.git
 git clone -b HB_Bridge https://github.com/n0mjs710/HBlink.git HB_Bridge
 git clone -b IPSC_Bridge https://github.com/n0mjs710/DMRlink.git IPSC_Bridge
 
+cd /srv/Repositories/stm32flash
+git clone https://git.code.sf.net/p/stm32flash/code stm32flash
+
 # cd /srv/Repositories/N4IRS
 # Nothing here
 
@@ -111,7 +114,7 @@ cp -rf DMR2NXDN DMR2YSF NXDN2DMR YSF2DMR YSF2NXDN YSF2P25 /usr/src
 cd /srv/Repositories/CA6JAU/
 cp -rf MMDVM_HS /usr/src
 
-# cd /srv/Repositories/DG9VH
+cd /srv/Repositories/DG9VH
 cp -R MMDVMHost-Dashboard/* /var/www/html/
 
 # cd /srv/Repositories/DVSwitch
@@ -128,6 +131,9 @@ cp -rf P25Gateway P25Parrot /usr/src
 
 cd /srv/Repositories/G4KLX/YSFClients
 cp -rf YSFGateway YSFParrot /usr/src
+
+cd /srv/Repositories/stm32flash
+cp -rf stm32flash /usr/src
 
 # cd /srv/Repositories/N0MJS
 # Nothing here
@@ -209,6 +215,11 @@ cd /usr/src/YSFParrot
 make clean
 make
 cp YSFParrot /opt/YSFParrot
+
+cd /usr/src/stm32flash
+make clean
+make
+cp stm32flash /usr/local/sbin
 
 # This needs to be fleshed out
 # MMDVM
