@@ -1,6 +1,6 @@
 # MMDVM-Install
 
-Scripts and config files to run the MMDVM on Debian Jessie
+Scripts and config files to run the MMDVM on Debian
 
 Start MMDVMHost at boot time (systemd)
 
