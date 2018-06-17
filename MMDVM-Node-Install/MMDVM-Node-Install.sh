@@ -13,14 +13,15 @@ set -o errexit
 # This could be pruned
 #
 apt-get update -y
+apt-get install git -y
 apt-get install g++ -y
 apt-get install make -y
 apt-get install build-essential -y
 
-apt-get install git -y
 # apt-get install dkms -y
 apt-get install debhelper -y
 apt-get install pkg-config -y
+apt-get install fakeroot -y
 
 apt-get install cmake -y
 apt-get install libtool -y
@@ -43,7 +44,6 @@ apt-get install qemu-user-static -y
 # For ircDDBGateway
 apt-get install automake -y
 # apt-get install libwxgtk3.0-dev -y
-apt-get install fakeroot -y
 
 # For MMDVM firmware
 apt-get install libusb-1.0 -y
