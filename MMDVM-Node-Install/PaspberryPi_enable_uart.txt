@@ -1,0 +1,14 @@
+For a Pi-Hat device, or any device that uses the onboard UART (ttyAMA0) you need to modify a couple of boot files.
+
+1: /boot/cmdline.txt
+Change:
+dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3a069d99-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
+To:
+dwc_otg.lpm_enable=0 console=tty1 root=PARTUUID=3a069d99-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
+
+On the RaspberryPi3 the UART is connected to the Bluetooth chip by default.
+To disable Bluetooth and restore the UART to the GPIO serial pins
+
+2: /boot/config.txt
+Add:
+dtoverlay=pi3-disable-bt
