@@ -100,7 +100,7 @@ cd /srv/Repositories/stm32flash
 git clone https://git.code.sf.net/p/stm32flash/code stm32flash
 
 # cd /srv/Repositories/N4IRS
-# Nothing here
+git clone https://github.com/N4IRS/MMDVMVersion.git
 
 # cd /srv/Repositories/OpenDV
 # Nothing here
@@ -134,6 +134,9 @@ cp -rf YSFGateway YSFParrot /usr/src
 
 cd /srv/Repositories/stm32flash
 cp -rf stm32flash /usr/src
+
+cd /srv/Repositories/G4KLX/N4IRS
+cp -rf MMDVMVersion /usr/src
 
 # cd /srv/Repositories/N0MJS
 # Nothing here
@@ -220,6 +223,11 @@ cd /usr/src/stm32flash
 make clean
 make
 cp stm32flash /usr/local/sbin
+
+cd /usr/src/MMDVMVersion
+make clean
+make
+cp MMDVMVersion /opt/MMDVMVersion
 
 # This needs to be fleshed out
 # MMDVM
