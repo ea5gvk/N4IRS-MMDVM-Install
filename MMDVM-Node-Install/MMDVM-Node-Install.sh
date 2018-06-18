@@ -52,7 +52,7 @@ apt-get install libstdc++-arm-none-eabi-newlib -y
 # apt-get install libsndfile-dev -y
 # apt-get install libasound2-dev -y
 
-For Building APT packages
+# For Building APT packages
 # apt-get install dkms -y
 # apt-get install debhelper -y
 # apt-get install pkg-config -y
