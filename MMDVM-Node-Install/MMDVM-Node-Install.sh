@@ -107,7 +107,7 @@ git clone -b IPSC_Bridge https://github.com/n0mjs710/DMRlink.git IPSC_Bridge
 cd /srv/Repositories/stm32flash
 git clone https://git.code.sf.net/p/stm32flash/code stm32flash
 
-# cd /srv/Repositories/N4IRS
+cd /srv/Repositories/N4IRS
 git clone https://github.com/N4IRS/MMDVMVersion.git
 
 # cd /srv/Repositories/OpenDV
