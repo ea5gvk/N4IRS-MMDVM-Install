@@ -143,7 +143,7 @@ cp -rf YSFGateway YSFParrot /usr/src
 cd /srv/Repositories/stm32flash
 cp -rf stm32flash /usr/src
 
-cd /srv/Repositories/G4KLX/N4IRS
+cd /srv/Repositories/N4IRS
 cp -rf MMDVMVersion /usr/src
 
 # cd /srv/Repositories/N0MJS
