@@ -24,7 +24,7 @@ apt-get install libusb-1.0 -y
 apt-get install python-pip -y
 apt-get install gdb-arm-none-eabi -y
 
-# For Armbian
+# For Armbian Need to check this !
 apt-get install libstdc++-arm-none-eabi-newlib -y
 
 # For building MD380-emu
