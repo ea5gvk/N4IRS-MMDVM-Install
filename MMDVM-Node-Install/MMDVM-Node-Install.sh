@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# N4IRS 06/15/2018
+# N4IRS 06/19/2018
 
 #################################################
 #                                               #
-#                                               #
+#    Setup a MMDVM Node on a clean disk         #
 #                                               #
 #################################################
 
@@ -16,8 +16,6 @@ apt-get update -y
 apt-get install git -y
 apt-get install curl -y
 apt-get install build-essential -y
-# apt-get install make -y # Installed by build-essential on Debian 9
-# apt-get install g++ -y # Installed by build-essential on Debian 9
 
 # For MMDVM firmware
 apt-get install libusb-1.0 -y
@@ -26,52 +24,6 @@ apt-get install gdb-arm-none-eabi -y
 
 # For Armbian Need to check this !
 apt-get install libstdc++-arm-none-eabi-newlib -y
-
-# For building MD380-emu
-# arm-linux-gnueabihf-gcc
-# apt-get install gcc-arm-none-eabi -y
-# apt-get install binutils-arm-none-eabi -y # Installed by gcc-arm-none-eabi
-# apt-get install libnewlib-arm-none-eabi -y # Installed by gcc-arm-none-eabi
-
-# apt-get install libc6-dev-armel-cross -y
-# apt-get install libc6-armel-cross -y # Installed by libc6-dev-armel-cross
-
-# Needed for MD380-emu build x86
-# apt-get install g++-arm-linux-gnueabihf -y
-# apt-get install binutils-arm-linux-gnueabi -y # Installed by g++-arm-linux-gnueabihf
-# apt-get install gcc-arm-linux-gnueabihf -y # Installed by g++-arm-linux-gnueabihf
-
-# Run MD380-emu on non-native processor
-# apt-get install qemu-user-static -y
-# apt-get install qemu binfmt-support -y # Installed by qemu-user-static
-
-# Analog_Bridge
-# apt-get install cmake -y
-# apt-get install automake -y
-# apt-get install libtool -y
-# apt-get install libsndfile-dev -y
-# apt-get install libasound2-dev -y
-
-# For Building APT packages
-# apt-get install dkms -y
-# apt-get install debhelper -y
-# apt-get install pkg-config -y
-# apt-get install fakeroot -y  # Installed by build-essential on Debian 9
-
-# For ircDDBGateway
-# apt-get install libwxgtk3.0-dev -y
-
-
-# copy the directory structure to the target disk
-#
-# etc contains the cron.daily symbolic links
-# lib contains the systemd units
-# opt contains the program directories populated with pre-configured .ini files
-# srv contains the git repositories
-# usr contains the scripts
-# var contains data files and logs
-
-# Add a test for existance
 
 cp -rf ./Directories/* /
 

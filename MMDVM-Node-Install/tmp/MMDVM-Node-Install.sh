@@ -14,49 +14,53 @@ set -o errexit
 #
 apt-get update -y
 apt-get install git -y
+apt-get install curl -y
+apt-get install build-essential -y
+# apt-get install make -y # Installed by build-essential on Debian 9
+# apt-get install g++ -y # Installed by build-essential on Debian 9
 
-# apt-get install g++ -y
-# apt-get install make -y
-# apt-get install build-essential -y
+# For MMDVM firmware
+apt-get install libusb-1.0 -y
+apt-get install python-pip -y
+apt-get install gdb-arm-none-eabi -y
 
+# For Armbian Need to check this !
+apt-get install libstdc++-arm-none-eabi-newlib -y
+
+# For building MD380-emu
+# arm-linux-gnueabihf-gcc
+# apt-get install gcc-arm-none-eabi -y
+# apt-get install binutils-arm-none-eabi -y # Installed by gcc-arm-none-eabi
+# apt-get install libnewlib-arm-none-eabi -y # Installed by gcc-arm-none-eabi
+
+# apt-get install libc6-dev-armel-cross -y
+# apt-get install libc6-armel-cross -y # Installed by libc6-dev-armel-cross
+
+# Needed for MD380-emu build x86
+# apt-get install g++-arm-linux-gnueabihf -y
+# apt-get install binutils-arm-linux-gnueabi -y # Installed by g++-arm-linux-gnueabihf
+# apt-get install gcc-arm-linux-gnueabihf -y # Installed by g++-arm-linux-gnueabihf
+
+# Run MD380-emu on non-native processor
+# apt-get install qemu-user-static -y
+# apt-get install qemu binfmt-support -y # Installed by qemu-user-static
+
+# Analog_Bridge
+# apt-get install cmake -y
+# apt-get install automake -y
+# apt-get install libtool -y
+# apt-get install libsndfile-dev -y
+# apt-get install libasound2-dev -y
+
+# For Building APT packages
 # apt-get install dkms -y
 # apt-get install debhelper -y
 # apt-get install pkg-config -y
-# apt-get install fakeroot -y
-
-# apt-get install cmake -y
-# apt-get install libtool -y
-
-# For MD380-emu
-# apt-get install binutils-arm-none-eabi -y
-
-# apt-get install libc6-armel-cross -y
-# apt-get install libc6-dev-armel-cross -y
-
-# apt-get install binutils-arm-linux-gnueabi -y # Not found Raspbian Stretch
-# apt-get install gcc-arm-linux-gnueabihf -y # Depends: gcc-5-arm-linux-gnueabihf (>= 5.2.1-13cross1) but it is not installable
-# apt-get install g++-arm-linux-gnueabihf -y # Depends: g++-5-arm-linux-gnueabihf (>= 5.2.1-13cross1) but it is not installable
-
-# apt-get install qemu binfmt-support -y
-# apt-get install qemu-user-static -y
+# apt-get install fakeroot -y  # Installed by build-essential on Debian 9
 
 # For ircDDBGateway
-# apt-get install automake -y
 # apt-get install libwxgtk3.0-dev -y
 
-# For MMDVM firmware
-# apt-get install libusb-1.0 -y
-# apt-get install python-pip -y
-
-# For MMDVM modem / HS firmware
-apt-get install gcc-arm-none-eabi -y
-apt-get install gdb-arm-none-eabi -y
-apt-get install libstdc++-arm-none-eabi-newlib -y
-apt-get install libnewlib-arm-none-eabi -y
-
-
-# For Armbian
-# apt-get install libstdc++-arm-none-eabi-newlib -y
 
 # copy the directory structure to the target disk
 #
@@ -103,8 +107,8 @@ git clone -b IPSC_Bridge https://github.com/n0mjs710/DMRlink.git IPSC_Bridge
 cd /srv/Repositories/stm32flash
 git clone https://git.code.sf.net/p/stm32flash/code stm32flash
 
-# cd /srv/Repositories/N4IRS
-# Nothing here
+cd /srv/Repositories/N4IRS
+git clone https://github.com/N4IRS/MMDVMVersion.git
 
 # cd /srv/Repositories/OpenDV
 # Nothing here
@@ -138,6 +142,9 @@ cp -rf YSFGateway YSFParrot /usr/src
 
 cd /srv/Repositories/stm32flash
 cp -rf stm32flash /usr/src
+
+cd /srv/Repositories/N4IRS
+cp -rf MMDVMVersion /usr/src
 
 # cd /srv/Repositories/N0MJS
 # Nothing here
@@ -224,6 +231,11 @@ cd /usr/src/stm32flash
 make clean
 make
 cp stm32flash /usr/local/sbin
+
+cd /usr/src/MMDVMVersion
+make clean
+make
+cp MMDVMVersion /opt/MMDVMVersion
 
 # This needs to be fleshed out
 # MMDVM
