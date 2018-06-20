@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# N4IRS 06/19/2018
+# N4IRS 06/15/2018
 
 #################################################
 #                                               #
-#    Build a MMDVM Node on a clean disk         #
+#                                               #
 #                                               #
 #################################################
 
@@ -13,18 +13,65 @@ set -o errexit
 # This could be pruned
 #
 apt-get update -y
-apt-get install git-core -y
+apt-get install git -y
 apt-get install curl -y
-apt-get install g++ -y
-apt-get install make -y
+apt-get install build-essential -y
+# apt-get install make -y # Installed by build-essential on Debian 9
+# apt-get install g++ -y # Installed by build-essential on Debian 9
 
 # For MMDVM firmware
-# apt-get install python-pip -y # Where is this used?
-apt-get install gdb-arm-none-eabi -y
 apt-get install libusb-1.0 -y
+apt-get install python-pip -y
+apt-get install gdb-arm-none-eabi -y
 
 # For Armbian Need to check this !
-# apt-get install libstdc++-arm-none-eabi-newlib -y
+apt-get install libstdc++-arm-none-eabi-newlib -y
+
+# For building MD380-emu
+# arm-linux-gnueabihf-gcc
+# apt-get install gcc-arm-none-eabi -y
+# apt-get install binutils-arm-none-eabi -y # Installed by gcc-arm-none-eabi
+# apt-get install libnewlib-arm-none-eabi -y # Installed by gcc-arm-none-eabi
+
+# apt-get install libc6-dev-armel-cross -y
+# apt-get install libc6-armel-cross -y # Installed by libc6-dev-armel-cross
+
+# Needed for MD380-emu build x86
+# apt-get install g++-arm-linux-gnueabihf -y
+# apt-get install binutils-arm-linux-gnueabi -y # Installed by g++-arm-linux-gnueabihf
+# apt-get install gcc-arm-linux-gnueabihf -y # Installed by g++-arm-linux-gnueabihf
+
+# Run MD380-emu on non-native processor
+# apt-get install qemu-user-static -y
+# apt-get install qemu binfmt-support -y # Installed by qemu-user-static
+
+# Analog_Bridge
+# apt-get install cmake -y
+# apt-get install automake -y
+# apt-get install libtool -y
+# apt-get install libsndfile-dev -y
+# apt-get install libasound2-dev -y
+
+# For Building APT packages
+# apt-get install dkms -y
+# apt-get install debhelper -y
+# apt-get install pkg-config -y
+# apt-get install fakeroot -y  # Installed by build-essential on Debian 9
+
+# For ircDDBGateway
+# apt-get install libwxgtk3.0-dev -y
+
+
+# copy the directory structure to the target disk
+#
+# etc contains the cron.daily symbolic links
+# lib contains the systemd units
+# opt contains the program directories populated with pre-configured .ini files
+# srv contains the git repositories
+# usr contains the scripts
+# var contains data files and logs
+
+# Add a test for existance
 
 cp -rf ./Directories/* /
 
@@ -49,6 +96,13 @@ git clone https://github.com/g4klx/NXDNClients.git
 git clone https://github.com/g4klx/MMDVMHost.git
 git clone https://github.com/g4klx/MMDVMCal.git
 git clone https://github.com/g4klx/MMDVM.git
+
+cd /srv/Repositories/N0MJS
+git clone https://github.com/n0mjs710/dmr_utils.git
+git clone https://github.com/n0mjs710/HBlink.git
+git clone https://github.com/n0mjs710/DMRlink.git
+git clone -b HB_Bridge https://github.com/n0mjs710/HBlink.git HB_Bridge
+git clone -b IPSC_Bridge https://github.com/n0mjs710/DMRlink.git IPSC_Bridge
 
 cd /srv/Repositories/stm32flash
 git clone https://git.code.sf.net/p/stm32flash/code stm32flash
@@ -91,6 +145,9 @@ cp -rf stm32flash /usr/src
 
 cd /srv/Repositories/N4IRS
 cp -rf MMDVMVersion /usr/src
+
+# cd /srv/Repositories/N0MJS
+# Nothing here
 
 ## Build the programs from source
 ## Yes, this is brute force
@@ -203,6 +260,7 @@ systemctl enable netcheck.service
 #
 /etc/cron.daily/DMRIDUpdateBM
 /etc/cron.daily/FCSRoomsupdate
+/etc/cron.daily/HBIDUpdate
 /etc/cron.daily/NXDNHostsupdate
 /etc/cron.daily/NXDNIDUpdate
 /etc/cron.daily/P25Hostsupdate
@@ -216,10 +274,13 @@ systemctl enable netcheck.service
 #
 apt-get install lighttpd -y
 
-# Need to add test for Stretch vs Jessie
-# apt-get install php7.0-common -y
-# apt-get install php -y
+# Need to add test for Stretc vs Jessie
+apt-get install php7.0-common -y
 apt-get install php7.0-cgi -y
+apt-get install php -y
+
+# groupadd www-data
+# usermod -G www-data -a pi
 
 chown -R www-data:www-data /var/www/html
 chmod -R 775 /var/www/html
