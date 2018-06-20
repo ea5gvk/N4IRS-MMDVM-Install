@@ -1,10 +1,10 @@
 Add OCD
-Add DVSwitch programs via apt-get install
 
 Add notes about enabling /dev/ttyAMA0 on a Pi
 
 Add support for OLED
 
 Add ircDDBGateway
- 
+
+Remove DMRlink and HBLink
 
