@@ -16,6 +16,7 @@ apt-get update -y
 apt-get install git-core -y
 apt-get install curl -y
 apt-get install g++ -y
+apt-get install make -y
 
 # For MMDVM firmware
 apt-get install libusb-1.0 -y
