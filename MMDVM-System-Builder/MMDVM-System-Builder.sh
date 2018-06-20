@@ -5,7 +5,7 @@ set -o errexit
 
 #################################################
 #                                               #
-#    Setup a MMDVM Node on a clean disk         #
+#    Build a MMDVM Node on a clean disk         #
 #                                               #
 #################################################
 
