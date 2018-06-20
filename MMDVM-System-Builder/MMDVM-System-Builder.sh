@@ -13,9 +13,9 @@ set -o errexit
 # This could be pruned
 #
 apt-get update -y
-apt-get install git -y
+apt-get install git-core -y
 apt-get install curl -y
-apt-get install build-essential -y
+apt-get install g++ -y
 
 # For MMDVM firmware
 apt-get install libusb-1.0 -y
