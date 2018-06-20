@@ -19,12 +19,12 @@ apt-get install g++ -y
 apt-get install make -y
 
 # For MMDVM firmware
-apt-get install libusb-1.0 -y
-apt-get install python-pip -y
+# apt-get install python-pip -y # Where is this used? 
 apt-get install gdb-arm-none-eabi -y
+apt-get install libusb-1.0 -y
 
 # For Armbian Need to check this !
-apt-get install libstdc++-arm-none-eabi-newlib -y
+# apt-get install libstdc++-arm-none-eabi-newlib -y
 
 cp -rf ./Directories/* /
 
@@ -227,11 +227,10 @@ systemctl enable netcheck.service
 #
 apt-get install lighttpd -y
 
-# Need to add test for Stretc vs Jessie
+# Need to add test for Stretch vs Jessie
 # apt-get install php7.0-common -y
-# apt-get install php7.0-cgi -y
 # apt-get install php -y
-apt-get install php-cgi -y
+apt-get install php7.0-cgi -y
 
 chown -R www-data:www-data /var/www/html
 chmod -R 775 /var/www/html
