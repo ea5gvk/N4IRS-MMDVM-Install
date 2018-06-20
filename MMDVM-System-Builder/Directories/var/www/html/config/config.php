@@ -3,20 +3,20 @@
 # Be careful, when manual editing this!
 
 date_default_timezone_set('UTC');
-define("MMDVMLOGPATH", "/var/log/mmdvm/");
+define("MMDVMLOGPATH", "/var/log/mmdvm");
 define("MMDVMINIPATH", "/opt/MMDVMHost");
 define("MMDVMINIFILENAME", "MMDVM.ini");
-define("MMDVMHOSTPATH", "/opt/MMDVMHost/");
+define("MMDVMHOSTPATH", "/opt/MMDVMHost");
 define("ENABLEXTDLOOKUP", "on");
 define("TALKERALIAS", "on");
 define("DMRIDDATPATH", "/var/lib/mmdvm/DMRIds.dat");
 define("RESOLVETGS", "on");
 define("ENABLEYSFGATEWAY", "on");
-define("YSFGATEWAYLOGPATH", "/var/log/mmdvm/");
+define("YSFGATEWAYLOGPATH", "/var/log/mmdvm");
 define("YSFGATEWAYLOGPREFIX", "YSFGateway");
-define("YSFGATEWAYINIPATH", "/opt/YSFGateway/");
+define("YSFGATEWAYINIPATH", "/opt/YSFGateway");
 define("YSFGATEWAYINIFILENAME", "YSFGateway.ini");
-define("YSFHOSTSPATH", "/var/lib/mmdvm/");
+define("YSFHOSTSPATH", "/var/lib/mmdvm");
 define("YSFHOSTSFILENAME", "YSFHosts.txt");
 define("DMRGATEWAYLOGPATH", "");
 define("DMRGATEWAYLOGPREFIX", "");
