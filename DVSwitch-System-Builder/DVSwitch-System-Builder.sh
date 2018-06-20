@@ -39,8 +39,8 @@ cp -rf ./Directories/* /
 # Clone the source code for the programs we want to install
 # The directories were installed from above
 
-cd /srv/Repositories/DG9VH
-git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git
+cd /srv/Repositories/N4IRS
+git clone https://github.com/N4IRS/MMDVMHost-Dashboard.git
 
 ## cd /srv/Repositories/DVSwitch
 
@@ -63,7 +63,7 @@ git clone -b IPSC_Bridge https://github.com/n0mjs710/DMRlink.git IPSC_Bridge
 # Copy the source directories to /usr/src
 # This allows me to keep a pristine copy in /srv/Repositories
 
-cd /srv/Repositories/DG9VH
+cd /srv/Repositories/N4IRS
 cp -R MMDVMHost-Dashboard/* /var/www/html/
 
 # cd /srv/Repositories/DVSwitch
