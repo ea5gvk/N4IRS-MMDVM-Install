@@ -228,12 +228,10 @@ systemctl enable netcheck.service
 apt-get install lighttpd -y
 
 # Need to add test for Stretc vs Jessie
-apt-get install php7.0-common -y
-apt-get install php7.0-cgi -y
-apt-get install php -y
-
-# groupadd www-data
-# usermod -G www-data -a pi
+# apt-get install php7.0-common -y
+# apt-get install php7.0-cgi -y
+# apt-get install php -y
+apt-get install php-cgi -y
 
 chown -R www-data:www-data /var/www/html
 chmod -R 775 /var/www/html
