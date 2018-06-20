@@ -30,6 +30,9 @@ apt-get install quantar -y
 # For Armbian Need to check this !
 # apt-get install libstdc++-arm-none-eabi-newlib -y
 
+# Need to save the working directory. This will work for now
+/srv/MMDVM-Install/DVSwitch-System-Builder
+
 cp -rf ./Directories/* /
 
 
