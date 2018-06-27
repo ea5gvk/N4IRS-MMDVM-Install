@@ -13,10 +13,10 @@ systemctl stop nxdngateway.service
 systemctl stop nxdnparrot.service
 systemctl stop p25gateway.service
 systemctl stop p25parrot.service
-systemctl stop ysf2dmr.service
-systemctl stop ysf2nxdn.service
-systemctl stop ysf2p25.service
 systemctl stop ysfgateway.service
 systemctl stop ysfparrot.service
-systemctl stop mmdvmhost.service
+systemctl stop mmdvm_bridge.service
+systemctl stop analog_bridge
+systemctl stop quantar_bridge
+systemctl stop md380-emu
 

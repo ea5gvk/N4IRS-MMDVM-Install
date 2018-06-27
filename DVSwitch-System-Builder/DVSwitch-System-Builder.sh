@@ -127,6 +127,7 @@ cp YSFParrot /opt/YSFParrot
 
 # Enable the systemd unit files
 #
+systemctl enable systemd-networkd-wait-online.service
 systemctl enable nxdngateway.service
 systemctl enable nxdnparrot.service
 systemctl enable p25gateway.service
