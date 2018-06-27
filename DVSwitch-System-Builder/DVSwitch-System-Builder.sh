@@ -91,11 +91,13 @@ cd /usr/src/DMRGateway
 make clean
 make
 cp DMRGateway /opt/DMRGateway
+cp -rf audio /opt/DMRGateway
 
 cd /usr/src/NXDNGateway
 make clean
 make
 cp NXDNGateway /opt/NXDNGateway
+cp -rf audio /opt/NXDNGateway
 
 cd /usr/src/NXDNParrot
 make clean
