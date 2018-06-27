@@ -19,7 +19,7 @@ I keep the configuration file with the program in /opt. The program is started w
 Example MMDVMHost MMDVM.ini Again, you could make a case for placement of the config files in /etc I felt /etc was too crowded now.
 Throuout the config files the callsign is W1AW and the ID is 1234567 I suggest you change these. Strongly!
 
-The data files needed like DMRIDS.dat are kept in /var/lib/mmdvm. I also place the host files and any other "changeable" data.
+The data files needed like DMRIds.dat are kept in /var/lib/mmdvm. I also place the host files and any other "changeable" data.
 These files can be replaced by download scripts. If needed the download script is responseable for restarting the application.
 
 I keep all the log files together in /var/log/mmdvm. This will make it easier to find the log and to cleanup as needed.
