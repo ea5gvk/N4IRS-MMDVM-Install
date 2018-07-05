@@ -1,4 +1,4 @@
-# This is the first pass of a script to build svxlink. SVXLink looks like a quite cabable program but I all I'm interested in is devcal (for now)
+# This is the first pass of a script to build svxlink. SVXLink looks like a quite capable program but I all I'm interested in is devcal (for now)
 # This needs to be simplified but for now it works. When the build is complete you will find devcal in /usr/src/svxlink/src/build/bin/devcal
 
 apt-get update
