@@ -97,7 +97,7 @@ using namespace Async;
 #define DEFAULT_HEADROOM_DB   6.0f
 #define DEFAULT_CALDEV        2404.8f
 #define DEFAULT_MAXDEV        5000.0f
-
+#define DEFAULT_RXFQ          "433000000"
 
 /****************************************************************************
  *
@@ -113,12 +113,12 @@ class SineGenerator : public Async::AudioSource
         sample_rate(INTERNAL_SAMPLE_RATE), enabled(false)
     {
     }
-    
+
     ~SineGenerator(void)
     {
       enable(false);
     }
-    
+
     void setLevel(double level_percent)
     {
       level = level_percent / 100.0;
@@ -137,7 +137,7 @@ class SineGenerator : public Async::AudioSource
     {
       return 20.0 * log10(adj_level);
     }
-    
+
     void enable(bool enable)
     {
       if (enable && !fqs.empty())
@@ -162,21 +162,21 @@ class SineGenerator : public Async::AudioSource
     {
       writeSamples();
     }
-    
+
     void allSamplesFlushed(void)
     {
     }
-    
+
   private:
     static const int BLOCK_SIZE = 128;
-    
+
     unsigned      pos;
     vector<float> fqs;
     double        level;
     double        adj_level;
     int           sample_rate;
     bool          enabled;
-    
+
     void writeSamples(void)
     {
       if (!enabled)
@@ -202,7 +202,7 @@ class SineGenerator : public Async::AudioSource
 	pos += written;
       } while (written != 0);
     }
-    
+
 };
 
 
@@ -308,7 +308,7 @@ class DevPrinter : public AudioSink
     }
 
     double carrierFq(void) const { return carrier_fq; }
-    
+
     virtual int writeSamples(const float *samples, int count)
     {
       for (int i=0; i<count; ++i)
@@ -349,7 +349,7 @@ class DevPrinter : public AudioSink
           if (++block_cnt >= PRINT_INTERVAL)
           {
             cout << "\r\033[K" "Tone dev=" << dev_est
-                 << "  Full bw dev=" << tot_dev_est 
+                 << "  Full bw dev=" << tot_dev_est
                  << "  Carrier freq err=" << fqerr_est;
             if (carrier_fq > 0.0)
             {
@@ -472,8 +472,7 @@ static float level_adjust_offset = 0.0f;
 static vector<float> mod_fqs;
 static const char *audio_dev = "alsa:default";
 static const unsigned audio_ch = 0;
-
-
+static const char *rx_fq_str = DEFAULT_RXFQ;
 
 /****************************************************************************
  *
@@ -503,6 +502,7 @@ int main(int argc, const char *argv[])
   transform(mod_fqs.begin(), mod_fqs.end(), mod_idxs.begin(),
       bind1st(divides<float>(), caldev));
   float mod_level = 100.0 * caldev / (maxdev * pow(10.0, headroom_db / 20.0));
+  cout << "--- Receiver frequency [Hz]     : " << rx_fq_str << endl;
   cout << "--- Modulation frequencies [Hz] : ";
   copy(mod_fqs.begin(), mod_fqs.end(), ostream_iterator<float>(cout, " "));
   cout << endl;
@@ -547,7 +547,7 @@ int main(int argc, const char *argv[])
       prev_src->registerSink(deemph, true);
       prev_src = deemph;
     }
-    
+
     tx = TxFactory::createNamedTx(cfg, cfgsect);
     if ((tx == 0) || !tx->initialize())
     {
@@ -567,7 +567,6 @@ int main(int argc, const char *argv[])
     cfg.setValue(cfgsect, "SQL_DET", "OPEN");
     cout << "--- Setting DTMF_MUTING=0\n";
     cfg.setValue(cfgsect, "DTMF_MUTING", "0");
-
     cout << "--- Use +, - and 0 to adjust PREAMP\n";
 
     rx = RxFactory::createNamedRx(cfg, cfgsect);
@@ -589,7 +588,7 @@ int main(int argc, const char *argv[])
       prev_src->registerSink(preemph, true);
       prev_src = preemph;
     }
-    
+
     dp = new DevPrinter(INTERNAL_SAMPLE_RATE, mod_fqs, maxdev, headroom_db);
     prev_src->registerSink(dp, true);
     prev_src = 0;
@@ -616,6 +615,8 @@ int main(int argc, const char *argv[])
     cfg.setValue(cfgsect, "SQL_DET", "OPEN");
     cout << "--- Setting DTMF_MUTING=0\n";
     cfg.setValue(cfgsect, "DTMF_MUTING", "0");
+    cout << "--- Setting FQ = " << rx_fq_str << endl;
+    cfg.setValue(cfgsect, "FQ", rx_fq_str);
     string wbrx_sect;
     if (cfg.getValue(cfgsect, "WBRX", wbrx_sect))
     {
@@ -642,7 +643,7 @@ int main(int argc, const char *argv[])
     {
       ddr->setModulation(Modulation::MOD_WBFM);
     }
-    DevMeasure *dev_measure = new DevMeasure(ddr->preDemodSampleRate(), 
+    DevMeasure *dev_measure = new DevMeasure(ddr->preDemodSampleRate(),
                                              mod_fqs, ddr->nbFq());
     ddr->preDemod.connect(mem_fun(dev_measure, &DevMeasure::processPreDemod));
 
@@ -709,8 +710,8 @@ int main(int argc, const char *argv[])
  * Output:    Returns 0 if all is ok, otherwise -1.
  * Author:    Tobias Blomberg, SM0SVX
  * Created:   2000-06-13
- * Remarks:   
- * Bugs:      
+ * Remarks:
+ * Bugs:
  *----------------------------------------------------------------------------
  */
 static void parse_arguments(int argc, const char **argv)
@@ -723,6 +724,10 @@ static void parse_arguments(int argc, const char **argv)
             &mod_fqs_str, 0,
 	    "The frequencies of the sine waves to modulate with",
             "<frequences in hz>"},
+    {"rxfq", 'z', POPT_ARG_STRING | POPT_ARGFLAG_SHOW_DEFAULT,
+            &rx_fq_str, 0,
+            "The frequency of the receiver",
+            "<frequency in hz>"},
     {"caldev", 'd', POPT_ARG_FLOAT | POPT_ARGFLAG_SHOW_DEFAULT, &caldev, 0,
 	    "The deviation to calibrate with", "<deviation in Hz>"},
     {"maxdev", 'm', POPT_ARG_FLOAT | POPT_ARGFLAG_SHOW_DEFAULT, &maxdev, 0,
@@ -739,6 +744,7 @@ static void parse_arguments(int argc, const char **argv)
     {"flat", 'F', POPT_ARG_NONE, &flat_fq_response, 0,
             "Flat TX/RX frequency response (no emphasis)", NULL},
     {"measure", 'M', POPT_ARG_NONE, &measure, 0, "Measure deviation", NULL},
+
     {"wide", 'w', POPT_ARG_NONE, &wb_mode, 0, "Wideband mode", NULL},
     {"audiodev", 'a', POPT_ARG_STRING | POPT_ARGFLAG_SHOW_DEFAULT,
             &audio_dev, 0,
@@ -747,11 +753,11 @@ static void parse_arguments(int argc, const char **argv)
     {NULL, 0, 0, NULL, 0}
   };
   int err;
-  
+
   optCon = poptGetContext(PROGRAM_NAME, argc, argv, optionsTable, 0);
   poptSetOtherOptionHelp(optCon, "<config file> <config section>");
   poptReadDefaultConfig(optCon, 0);
-  
+
   err = poptGetNextOpt(optCon);
   if (err != -1)
   {
@@ -847,7 +853,7 @@ static void stdin_handler(FdWatch *w)
     stdin_watch = 0;
     return;
   }
-  
+
   switch (toupper(buf[0]))
   {
     case 'Q':
@@ -875,7 +881,7 @@ static void stdin_handler(FdWatch *w)
       }
       break;
     }
-    
+
     case '-':
     {
       if (cal_tx)
@@ -922,7 +928,7 @@ static void stdin_handler(FdWatch *w)
         gen->enable(!gen->isEnabled());
       }
       break;
-    
+
     default:
       break;
   }
