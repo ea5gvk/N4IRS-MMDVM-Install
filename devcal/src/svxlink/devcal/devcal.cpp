@@ -488,7 +488,8 @@ int main(int argc, const char *argv[])
           "This is free software, and you\n";
   cout << "are welcome to redistribute it in accordance with the "
           "terms and conditions in\n";
-  cout << "the GNU GPL (General Public License) version 2 or later.\n\n";
+  cout << "the GNU GPL (General Public License) version 2 or later.\n";
+  cout << "Minor tweaks by N4IRS for use with MMDVMCal.\n\n";
 
   setlocale(LC_ALL, "");
   CppApplication app;
@@ -723,11 +724,11 @@ static void parse_arguments(int argc, const char **argv)
     {"modfqs", 'f', POPT_ARG_STRING | POPT_ARGFLAG_SHOW_DEFAULT,
             &mod_fqs_str, 0,
 	    "The frequencies of the sine waves to modulate with",
-            "<frequences in hz>"},
-    {"rxfq", 'z', POPT_ARG_STRING | POPT_ARGFLAG_SHOW_DEFAULT,
+            "<frequences in Hz>"},
+    {"rxfreq", 'z', POPT_ARG_STRING | POPT_ARGFLAG_SHOW_DEFAULT,
             &rx_fq_str, 0,
             "The frequency of the receiver",
-            "<frequency in hz>"},
+            "<frequency in Hz>"},
     {"caldev", 'd', POPT_ARG_FLOAT | POPT_ARGFLAG_SHOW_DEFAULT, &caldev, 0,
 	    "The deviation to calibrate with", "<deviation in Hz>"},
     {"maxdev", 'm', POPT_ARG_FLOAT | POPT_ARGFLAG_SHOW_DEFAULT, &maxdev, 0,
