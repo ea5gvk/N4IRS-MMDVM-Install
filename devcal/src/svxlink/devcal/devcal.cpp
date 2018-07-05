@@ -348,9 +348,9 @@ class DevPrinter : public AudioSink
 
           if (++block_cnt >= PRINT_INTERVAL)
           {
-            cout << "\r\033[K" "Tone dev=" << dev_est
-                 << "  Full bw dev=" << tot_dev_est
-                 << "  Carrier freq err=" << fqerr_est;
+            cout << "\r\033[K" "Tone deviation = " << dev_est
+                 << "  Full BW deviation = " << tot_dev_est
+                 << "  Carrier frequency error = " << fqerr_est;
             if (carrier_fq > 0.0)
             {
               int ppm_err =
