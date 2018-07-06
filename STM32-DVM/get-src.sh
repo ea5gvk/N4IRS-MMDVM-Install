@@ -17,6 +17,8 @@ git clone https://github.com/juribeparada/STM32F4XX_Lib.git
 
 cp /srv/MMDVM-Install/STM32-DVM/Config.h /usr/src/MMDVM
 
+cp /srv/MMDVM-Install/STM32-DVM/SerialRB.h /usr/src/MMDVM
+
 cp /srv/MMDVM-Install/STM32-DVM/program-STM32_DVM_PiHat /usr/local/sbin
 
 cp /srv/MMDVM-Install/STM32-DVM/program-STM32_DVM_USB /usr/local/sbin
