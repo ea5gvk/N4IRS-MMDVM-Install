@@ -47,36 +47,5 @@ Quick usage instructions:
 Search for LTE carriers within a common LTE frequency range used in the US:
   CellSearch --freq-start 715e6 --freq-end 768e6
 
-Results will look something like this:
-$ ./CellSearch --freq-start 778e6 --freq-end 778e6
-LTE CellSearch v1.0.0 (release) beginning
-  Search frequency: 778 MHz
-  PPM: 120
-  correction: 1
-Found Rafael Micro R820T tuner
-[R82XX] PLL not locked!
-Examining center frequency 778 MHz ...
-  Detected a cell!
-    cell ID: 168
-    RX power level: -36.8562 dB
-    residual frequency offset: 1660.47 Hz
-  Detected a cell!
-    cell ID: 206
-    RX power level: -42.9021 dB
-    residual frequency offset: 1622.82 Hz
-Detected the following cells:
-A: #antenna ports C: CP type ; P: PHICH duration ; PR: PHICH resource type
-CID A      fc   foff RXPWR C nRB P  PR CrystalCorrectionFactor
-168 2    778M  1.66k -36.9 N 100 N one 1.0000021342825600179
-206255    778M  1.62k -42.9 N 255 U UNK 1.0000020858851397243
-
-The CrystalCorrectionFactor values can be converted to PPM correction figures
-(for use in correcting other applications) using: PPM = 1e6 * (1 - CrystalCorrectionFactor)
-(calculated using python):
-
-$ python
->>> 1e6*(1-1.0000020858851397243)
--2.0858851397242972
-
 Above was borrowed from:
 https://gist.github.com/darksidelemm/b517e6a9b821c50c170f1b9b7d65b824
