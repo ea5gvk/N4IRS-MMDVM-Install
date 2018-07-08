@@ -470,7 +470,7 @@ static Tx *tx = 0;
 static Rx *rx = 0;
 static float level_adjust_offset = 0.0f;
 static vector<float> mod_fqs;
-static const char *audio_dev = "alsa:default";
+static const char *audio_dev = "";
 static const unsigned audio_ch = 0;
 static const char *rx_fq_str = DEFAULT_RXFQ;
 
