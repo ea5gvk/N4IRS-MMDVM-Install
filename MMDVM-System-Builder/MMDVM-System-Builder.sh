@@ -129,7 +129,7 @@ cd /usr/src/NXDNGateway
 make clean
 make
 cp NXDNGateway /opt/NXDNGateway
-cp -rf audio /opt/NXDNGateway
+cp -rf Audio /opt/NXDNGateway
 
 cd /usr/src/NXDNParrot
 make clean
