@@ -4,6 +4,7 @@ Clone the MMDVM repository from G4LKX
 cd to the MMDVM directory
 
 git submodule init
+
 git submodule update
 
 Copy Config.h and IO.cpp over the existing files.
